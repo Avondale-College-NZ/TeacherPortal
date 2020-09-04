@@ -32,5 +32,19 @@ namespace TeacherDirectory.Services
         {
             return _teacherList.FirstOrDefault(e => e.ID == ID);
         }
+
+        public Teacher Update(Teacher updatedTeacher)
+        {
+            Teacher teacher = _teacherList.FirstOrDefault(e => e.ID == updatedTeacher.ID);
+
+            if(teacher != null)
+            {
+                teacher.FirstName = updatedTeacher.FirstName;
+                teacher.Email = updatedTeacher.Email;
+                teacher.Department = updatedTeacher.Department;
+            }
+
+            return teacher;
+        }
     }
 }

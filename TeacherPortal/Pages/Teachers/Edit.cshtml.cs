@@ -31,5 +31,11 @@ namespace TeacherPortal.Pages.Teachers
 
             return Page();
         }
+
+        public IActionResult OnPost(Teacher teacher)
+        {
+            Teacher = teacherRepository.Update(teacher);
+            return RedirectToPage("Index");
+        }
     }
 }
