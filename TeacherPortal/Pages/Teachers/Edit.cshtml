@@ -2,6 +2,7 @@
 @model TeacherPortal.Pages.Teachers.EditModel
 @{
     ViewData["Title"] = "Edit";
+    var photoPath = "~/images/" + (Model.Teacher.PhotoPath ?? "User.jpg");
 }
 
 <h1>Edit</h1>
