@@ -15,7 +15,7 @@
 <div class="card-deck">
     @foreach (var Teacher in Model.Teachers)
     {
-        var photoPath = "~/images/" + (Teacher.Photo ?? "User.jpg");
+        var photoPath = "~/images/" + (Teacher.PhotoPath ?? "User.jpg");
         <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
             <div class="card-header">
                 <h3>@Teacher.FirstName</h3>

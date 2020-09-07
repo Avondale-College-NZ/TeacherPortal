@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using TeacherDirectory.Models;
@@ -13,12 +15,16 @@ namespace TeacherPortal.Pages.Teachers
     {
         private readonly ITeacherRepository teacherRepository;
 
-        public EditModel(ITeacherRepository teacherRepository)
+        public EditModel(ITeacherRepository teacherRepository,
+            IWebHostEnvironment webHostEnviroment)
         {
             this.teacherRepository = teacherRepository;
         }
 
         public Teacher Teacher { get; set; } 
+
+        [BindProperty]
+        public IFormFile Photo { get; set; }
 
         public IActionResult OnGet(int ID)
         {
@@ -34,6 +40,11 @@ namespace TeacherPortal.Pages.Teachers
 
         public IActionResult OnPost(Teacher teacher)
         {
+            if (Photo != null)
+            {
+                teacher.PhotoPath = "";
+            }
+
             Teacher = teacherRepository.Update(teacher);
             return RedirectToPage("Index");
         }

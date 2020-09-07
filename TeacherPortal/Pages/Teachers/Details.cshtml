@@ -2,7 +2,7 @@
 @model TeacherPortal.Pages.Teachers.DetailsModel
 @{
     ViewData["Title"] = "Details";
-    var photoPath = "~/images/" + (Model.Teacher.Photo ?? "User.jpg");
+    var photoPath = "~/images/" + (Model.Teacher.PhotoPath ?? "User.jpg");
 }
 
     <div class="row justify-content-center m-3">
