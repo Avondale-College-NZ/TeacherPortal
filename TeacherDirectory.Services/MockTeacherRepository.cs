@@ -13,7 +13,7 @@ namespace TeacherDirectory.Services
             _teacherList = new List<Teacher>()
             {
                 new Teacher() { ID = 1, FirstName = "Cooper", LastName = "Hiebendaal", TeacherCode = "HIE", Department = Dept.Sports,
-                    Email = "porkhunt@gmail.com", PhotoPath = "User.jpg" },
+                    Email = "porkhunt@gmail.com", PhotoPath = "John.png" },
                 new Teacher() { ID = 2, FirstName = "Malhar", LastName = "Gohel", TeacherCode = "GHL", Department = Dept.Science,
                     Email = "john@pragimtech.com", PhotoPath = "User.jpg" },
                 new Teacher() { ID = 3, FirstName = "Aziz", LastName = "Patel", TeacherCode = "PAT", Department = Dept.Mathematics,
@@ -42,6 +42,7 @@ namespace TeacherDirectory.Services
                 teacher.FirstName = updatedTeacher.FirstName;
                 teacher.Email = updatedTeacher.Email;
                 teacher.Department = updatedTeacher.Department;
+                teacher.PhotoPath = updatedTeacher.PhotoPath;
             }
 
             return teacher;
