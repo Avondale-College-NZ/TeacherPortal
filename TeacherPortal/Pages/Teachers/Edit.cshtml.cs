@@ -43,19 +43,24 @@ namespace TeacherPortal.Pages.Teachers
 
         public IActionResult OnPost(Teacher teacher)
         {
-            if (Photo != null)
+            if (ModelState.IsValid)
             {
-                if (teacher.PhotoPath != null)
+                if (Photo != null)
                 {
-                    string filePath = Path.Combine(webHostEnviroment.WebRootPath,
-                        "images", teacher.PhotoPath);
-                    System.IO.File.Delete(filePath);
+                    if (teacher.PhotoPath != null)
+                    {
+                        string filePath = Path.Combine(webHostEnviroment.WebRootPath,
+                            "images", teacher.PhotoPath);
+                        System.IO.File.Delete(filePath);
+                    }
+                    teacher.PhotoPath = ProcessUploadedFile();
                 }
-                teacher.PhotoPath = ProcessUploadedFile();
+
+                Teacher = teacherRepository.Update(teacher);
+                return RedirectToPage("Index");
             }
 
-            Teacher = teacherRepository.Update(teacher);
-            return RedirectToPage("Index");
+            return Page();
         }
 
         private string ProcessUploadedFile()
