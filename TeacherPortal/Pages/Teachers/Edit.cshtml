@@ -1,27 +1,32 @@
-﻿@page "{id:min(1)}"
+﻿@page "{id:min(1)?}/{handler?}"
 @model TeacherPortal.Pages.Teachers.EditModel
 @{
     ViewData["Title"] = "Edit";
     var photoPath = "~/images/" + (Model.Teacher.PhotoPath ?? "User.jpg");
+    var pageHeader = Model.Teacher.ID > 0 ? "Edit" : "Create";
 }
 
-<h1>Edit</h1>
+<h1>@pageHeader</h1>
 
 <form method="post" class="mt-3" enctype="multipart/form-data">
     <input hidden asp-for="Teacher.ID" />
     <input hidden asp-for="Teacher.PhotoPath" />
+
+    <div asp-validation-summary="All" class="text-danger"></div>
 
     <div class="form-group row">
         <label asp-for="Teacher.FirstName" class="col-sm-2 col-form-label">
         </label>
         <div class="col-sm-10">
             <input asp-for="Teacher.FirstName" class="form-control" placeholder="Name">
+            <span asp-validation-for="Teacher.FirstName" class="text-danger"></span>
         </div>
     </div>
     <div class="form-group row">
         <label asp-for="Teacher.Email" class="col-sm-2 col-form-label"></label>
         <div class="col-sm-10">
             <input asp-for="Teacher.Email" class="form-control" placeholder="Email">
+            <span asp-validation-for="Teacher.Email" class="text-danger"></span>
         </div>
     </div>
 
@@ -32,6 +37,7 @@
                     asp-items="Html.GetEnumSelectList<Dept>()">
                 <option value="">Please Select</option>
             </select>
+            <span asp-validation-for="Teacher.Department" class="text-danger"></span>
         </div>
     </div>
 
@@ -51,7 +57,7 @@
 
     <div class="form-group row">
         <div class="col-sm-10">
-            <button type="submit" class="btn btn-primary">Update</button>
+            <button type="submit" class="btn btn-primary">Save</button>
             <a asp-page="/Teachers/Index" class="btn btn-primary">Cancel</a>
         </div>
     </div>

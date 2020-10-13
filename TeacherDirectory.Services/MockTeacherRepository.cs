@@ -22,7 +22,14 @@ namespace TeacherDirectory.Services
                     Email = "david@pragimtech.com", PhotoPath = "User.jpg" },
             };
         }
-        
+
+        public Teacher Add(Teacher newTeacher)
+        {
+            newTeacher.ID = _teacherList.Max(e => e.ID) + 1;
+            _teacherList.Add(newTeacher);
+            return newTeacher;
+        }
+
         public IEnumerable<Teacher> GetAllTeachers()
         {
             return _teacherList;

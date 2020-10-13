@@ -23,17 +23,24 @@ namespace TeacherPortal.Pages.Teachers
             this.teacherRepository = teacherRepository;
             this.webHostEnviroment = webHostEnviroment;
         }
-
+        [BindProperty]
         public Teacher Teacher { get; set; } 
 
         [BindProperty]
         public IFormFile Photo { get; set; }
 
-        public IActionResult OnGet(int ID)
+        public IActionResult OnGet(int? ID)
         {
-          Teacher = teacherRepository.GetTeacher(ID);
+            if (ID.HasValue)
+            {
+                Teacher = teacherRepository.GetTeacher(ID.Value);
+            }
+            else
+            {
+                Teacher = new Teacher();
+            }
 
-          if (Teacher == null)
+            if (Teacher == null)
             {
                 return RedirectToPage("/NotFound");
             }
@@ -41,21 +48,34 @@ namespace TeacherPortal.Pages.Teachers
             return Page();
         }
 
-        public IActionResult OnPost(Teacher teacher)
+        public IActionResult OnPost()
         {
-            if (Photo != null)
+            if (ModelState.IsValid)
             {
-                if (teacher.PhotoPath != null)
+                if (Photo != null)
                 {
-                    string filePath = Path.Combine(webHostEnviroment.WebRootPath,
-                        "images", teacher.PhotoPath);
-                    System.IO.File.Delete(filePath);
+                    if (Teacher.PhotoPath != null)
+                    {
+                        string filePath = Path.Combine(webHostEnviroment.WebRootPath,
+                            "images", Teacher.PhotoPath);
+                        System.IO.File.Delete(filePath);
+                    }
+                    Teacher.PhotoPath = ProcessUploadedFile();
                 }
-                teacher.PhotoPath = ProcessUploadedFile();
+                // If Teacher ID > 0, call Update() to update existing
+                // teacher details else call Add() to add a new staff member
+                if (Teacher.ID > 0)
+                {
+                    Teacher = teacherRepository.Update(Teacher);
+                }
+                else
+                {
+                    Teacher = teacherRepository.Add(Teacher);
+                }
+                return RedirectToPage("Index");
             }
 
-            Teacher = teacherRepository.Update(teacher);
-            return RedirectToPage("Index");
+            return Page();
         }
 
         private string ProcessUploadedFile()

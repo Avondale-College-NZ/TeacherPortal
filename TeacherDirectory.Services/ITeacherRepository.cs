@@ -9,5 +9,6 @@ namespace TeacherDirectory.Services
         IEnumerable<Teacher> GetAllTeachers();
         Teacher GetTeacher(int ID);
         Teacher Update(Teacher updatedTeacher);
+        Teacher Add(Teacher newTeacher);
     }
 }

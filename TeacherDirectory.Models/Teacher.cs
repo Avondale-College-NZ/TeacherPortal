@@ -10,10 +10,11 @@ namespace TeacherDirectory.Models
         public int ID { get; set; }
         [Required]
         public string FirstName { get; set; }
-        [Required]
         public string LastName { get; set; }
         public string TeacherCode { get; set; }
+        [Required]
         public Dept? Department { get; set; }
+        [Required]
         public string Email { get; set; }
         public string PhotoPath { get; set; }
     }
