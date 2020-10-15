@@ -10,5 +10,6 @@ namespace TeacherDirectory.Services
         Teacher GetTeacher(int ID);
         Teacher Update(Teacher updatedTeacher);
         Teacher Add(Teacher newTeacher);
+        Teacher Delete(int ID);
     }
 }

@@ -8,7 +8,7 @@ namespace TeacherDirectory.Models
    public class Teacher
     {
         public int ID { get; set; }
-        [Required]
+        [Required, MinLength(3, ErrorMessage = "Name must contain at least 3 characters")]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string TeacherCode { get; set; }

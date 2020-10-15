@@ -30,6 +30,18 @@ namespace TeacherDirectory.Services
             return newTeacher;
         }
 
+        public Teacher Delete(int ID)
+        {
+            var teacherToDelete = _teacherList.FirstOrDefault(e => e.ID == ID);
+
+            if(teacherToDelete != null)
+            {
+                _teacherList.Remove(teacherToDelete);
+            }
+
+            return teacherToDelete;
+        }
+
         public IEnumerable<Teacher> GetAllTeachers()
         {
             return _teacherList;
