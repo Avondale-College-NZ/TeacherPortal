@@ -2,6 +2,7 @@
 @model TeacherPortal.Pages.Teachers.IndexModel
 @{
     ViewData["Title"] = "Index";
+    ViewData["ShowButtons"] = true;
 }
 
 <style>
@@ -10,31 +11,13 @@
     }
 </style>
 
+@await Component.InvokeAsync("HeadCount")
+
 <h1>Teachers</h1>
 
 <div class="card-deck">
     @foreach (var Teacher in Model.Teachers)
     {
-        var photoPath = "~/images/" + (Teacher.PhotoPath ?? "User.jpg");
-        <div class="card m-3" style="min-width: 18rem; max-width:30.5%;">
-            <div class="card-header">
-                <h3>@Teacher.FirstName</h3>
-            </div>
-
-            <img class="card-img-top ImageThumbnail" src="@photoPath"
-                 asp-append-version="true" />
-
-            <div class="card-footer text-center">
-                <a asp-page="/Teachers/Details" asp-route-ID="@Teacher.ID"
-                   class="btn btn-primary m-1">View</a>
-
-                <a asp-page="/Teachers/Edit" asp-route-ID="@Teacher.ID"
-                   class="btn btn-primary m-1">Edit</a>
-
-                <a asp-page="/Teachers/Delete" asp-route-ID="@Teacher.ID"
-                   class="btn btn-danger m-1">Delete</a>
-
-            </div>
-        </div>
+        <partial name="_DisplayTeacherPartial" model="Teacher" view-data="ViewData" />
     }
 </div>

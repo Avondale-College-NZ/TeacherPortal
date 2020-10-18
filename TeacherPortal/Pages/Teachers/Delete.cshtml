@@ -2,12 +2,16 @@
 @model TeacherPortal.Pages.Teachers.DeleteModel
 @{
     ViewData["Title"] = "Delete";
+    ViewData["ShowButtons"] = false;
 }
 
 <h1>Delete Confirmation</h1>
 
 <div class="alert alert-danger">
-    <h5>Are you sure you want to delete employee - @Model.Teacher.FirstName</h5>
+    @*Render partial view passing it the model data and ViewData dictionary*@
+    <partial name="_DisplayTeacherPartial" model="Model.Teacher" view-data="ViewData" />
+
+    <h5>Are you sure you want to delete teacher? - @Model.Teacher.FirstName</h5>
     <form method="post">
         <button type="submit" class="btn btn-danger">Yes</button>
         <a asp-page="/Teachers/Index" class="btn btn-primary">No</a>
