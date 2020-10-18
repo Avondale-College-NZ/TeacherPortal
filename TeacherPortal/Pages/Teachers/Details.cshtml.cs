@@ -20,9 +20,16 @@ namespace TeacherPortal.Pages.Teachers
 
         public Teacher Teacher { get; private set; }
 
-        public void OnGet(int ID)
+        public IActionResult OnGet(int ID)
         {
             Teacher = teacherRepository.GetTeacher(ID);
+
+            if(Teacher == null)
+            {
+                return RedirectToPage("/NotFound");
+            }
+
+            return Page();
         }
     }
 }
