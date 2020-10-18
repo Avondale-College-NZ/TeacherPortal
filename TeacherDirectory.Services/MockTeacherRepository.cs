@@ -52,6 +52,17 @@ namespace TeacherDirectory.Services
             return _teacherList.FirstOrDefault(e => e.ID == ID);
         }
 
+        public IEnumerable<Teacher> Search(string searchTerm)
+        {
+            if(string.IsNullOrEmpty(searchTerm))
+            {
+                return _teacherList;
+            }
+
+            return _teacherList.Where(e => e.FirstName.Contains(searchTerm) ||
+            e.Email.Contains(searchTerm));
+        }
+
         public IEnumerable<DeptHeadCount> TeacherCountByDept(Dept? dept)
         {
             IEnumerable<Teacher> query = _teacherList;

@@ -15,13 +15,16 @@ namespace TeacherPortal.Pages.Teachers
 
         public IEnumerable<Teacher> Teachers { get; set; }
 
+        [BindProperty(SupportsGet = true)]
+        public string SearchTerm { get; set; }
+
         public IndexModel(ITeacherRepository teacherRepository)
         {
             this.teacherRepository = teacherRepository;
         }
         public void OnGet()
         {
-            Teachers = teacherRepository.GetAllTeachers();
+            Teachers = teacherRepository.Search(SearchTerm);
         }
     }
 }
