@@ -18,10 +18,5 @@ namespace TeacherPortal.Pages
         {
             _logger = logger;
         }
-
-        public void OnGet()
-        {
-            Message = "Avondale Directory! The time now is" + DateTime.Now.ToLongTimeString();
-        }
     }
 }
