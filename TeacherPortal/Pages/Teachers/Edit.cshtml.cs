@@ -31,6 +31,8 @@ namespace TeacherPortal.Pages.Teachers
 
         public IActionResult OnGet(int? ID)
         {
+            // if id parameter has value, retrieve the existing
+            // teacher details, else create a new Teacher
             if (ID.HasValue)
             {
                 Teacher = teacherRepository.GetTeacher(ID.Value);
@@ -81,9 +83,10 @@ namespace TeacherPortal.Pages.Teachers
         private string ProcessUploadedFile()
         {
             string uniqueFileName = null;
-
+            //If the Photo property on the incoming model is not empty or null, then the user selected an image to upload//
             if (Photo != null)
             {
+                // The image must be uploaded to the images file
                 string uploadsFolder = Path.Combine(webHostEnviroment.WebRootPath, "images");
                 uniqueFileName = Guid.NewGuid().ToString() + "_" + Photo.FileName;
                 string filePath = Path.Combine(uploadsFolder, uniqueFileName);
