@@ -10,6 +10,9 @@ namespace TeacherDirectory.Services.Migrations
                 name: "Teachers",
                 columns: table => new
                 {
+                    //Migration created when I used Initial-Create, created by the Teacher class and consists of all its attributes. 
+                    //I had to use the intial create on the TeacherDirectory.Models as it contained all the neccessary information.
+                    //Nullable false means they can't be left null
                     ID = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     FirstName = table.Column<string>(nullable: false),

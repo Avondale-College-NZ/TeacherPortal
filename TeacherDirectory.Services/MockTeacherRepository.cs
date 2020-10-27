@@ -4,6 +4,7 @@ using System.Linq;
 
 namespace TeacherDirectory.Services
 {
+    //Mock Teacher repository has hard-coded data that I originally used to help create my application
     public class MockTeacherRepository : ITeacherRepository
     {
         private List<Teacher> _teacherList;
@@ -26,7 +27,9 @@ namespace TeacherDirectory.Services
         public Teacher Add(Teacher newTeacher)
         {
             newTeacher.ID = _teacherList.Max(e => e.ID) + 1;
+            //this computes the ID manually for a new teacher, giving the max value possible for the ID.
             _teacherList.Add(newTeacher);
+            //Adds a teacher to the list.
             return newTeacher;
         }
 
@@ -56,9 +59,10 @@ namespace TeacherDirectory.Services
         {
             if(string.IsNullOrEmpty(searchTerm))
             {
+                //Returns all the teachers if left null.
                 return _teacherList;
             }
-
+            //Search by First name, if the search contains a name the is relevant to the detials, the teacher will show up
             return _teacherList.Where(e => e.FirstName.Contains(searchTerm) ||
             e.Email.Contains(searchTerm));
         }
@@ -81,7 +85,7 @@ namespace TeacherDirectory.Services
         public Teacher Update(Teacher updatedTeacher)
         {
             Teacher teacher = _teacherList.FirstOrDefault(e => e.ID == updatedTeacher.ID);
-
+            //If the teacher exists already, it goes to updated teacher.
             if(teacher != null)
             {
                 teacher.FirstName = updatedTeacher.FirstName;

@@ -17,6 +17,7 @@ namespace TeacherPortal.Pages.Teachers
 
         [BindProperty(SupportsGet = true)]
         public string SearchTerm { get; set; }
+        //uses the search function
 
         public IndexModel(ITeacherRepository teacherRepository)
         {

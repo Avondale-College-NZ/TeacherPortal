@@ -22,7 +22,7 @@ namespace TeacherPortal.Pages.Teachers
         public IActionResult OnGet(int ID)
         {
             Teacher = teacherRepository.GetTeacher(ID);
-
+            //Uses the get teache method, if the teacher is null, you will be ridirected to the notfound razor page
             if(Teacher == null)
             {
                 return RedirectToPage("/NotFound");

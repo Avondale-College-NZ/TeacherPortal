@@ -22,6 +22,7 @@ namespace TeacherPortal.Pages.Teachers
 
         public IActionResult OnGet(int ID)
         {
+            //Gets the teacher information from the repository
             Teacher = teacherRepository.GetTeacher(ID);
 
             if(Teacher == null)

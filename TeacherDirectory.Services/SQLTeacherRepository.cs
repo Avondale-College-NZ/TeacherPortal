@@ -16,7 +16,7 @@ namespace TeacherDirectory.Services
         {
             this.context = context;
         }
-
+        //Mock Employee repository details again, but linking the functions to the SQL server
         public Teacher Add(Teacher newTeacher)
         {
             context.Database.ExecuteSqlRaw("spInsertTeacher {0}, {1}, {2}, {3}",
@@ -37,7 +37,7 @@ namespace TeacherDirectory.Services
             }
             return teacher;
         }
-
+        //Auto Generated code with the connection.
         public IEnumerable<Teacher> GetAllTeachers()
         {
             return context.Teachers

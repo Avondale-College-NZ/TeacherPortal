@@ -25,7 +25,7 @@ namespace TeacherPortal.Pages.Teachers
         }
         [BindProperty]
         public Teacher Teacher { get; set; } 
-
+        //Bind Property reduces the need for the developer to manually extract values.
         [BindProperty]
         public IFormFile Photo { get; set; }
 

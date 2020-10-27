@@ -7,6 +7,7 @@ namespace TeacherDirectory.Models
 {
    public class Teacher
     {
+        //All the teacher fields, [Required] means the field can't be left null.
         public int ID { get; set; }
         [Required, MinLength(3, ErrorMessage = "Name must contain at least 3 characters")]
         public string FirstName { get; set; }

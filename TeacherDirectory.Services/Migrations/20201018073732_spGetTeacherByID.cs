@@ -6,6 +6,7 @@ namespace TeacherDirectory.Services.Migrations
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            //Query to get the teacher by ID
             string procedure = @"Create procedure spGetTeacherByID
 @ID int
 as
