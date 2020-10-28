@@ -21,8 +21,11 @@ AS
 BEGIN
 
 INSERT INTO Teachers
+
 (FirstName, Email, PhotoPath, Department)
+
 VALUES (@FirstName, @Email, @PhotoPath, @Dept)
+
 END
 
 and run the query and save it.
