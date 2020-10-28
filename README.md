@@ -7,11 +7,17 @@ Type "Add-Migration" InitialCreate and make sure TeacherDirectory.Models is sele
 On the Sql Server use this to create the neccessary stored Procedure called spInsertTeacher:
 
 Create Proc spInsertTeacher
+
 @FirstName nvarchar(100),
+
 @Email nvarchar(100),
+
 @PhotoPath nvarchar(100),
+
 @Dept int
+
 AS
+
 BEGIN
 
 INSERT INTO Teachers
